@@ -1,0 +1,195 @@
+%% -------------------------------------------------------------- %%
+% 								   %
+%                    TEMPLATE DE DOCUMENT LATEX       	           %
+%                    université de Perpignan Via Domtia
+%
+%                           Ryma Nait Amara								   %
+%% -------------------------------------------------------------- %%
+
+
+%% -------------------------------------------------------------- %%
+%								   %
+%                         Type du document			   %
+%								   %
+%% -------------------------------------------------------------- %%
+
+\documentclass[11pt,a4paper]{article}
+
+%% -------------------------------------------------------------- %%
+%								   %
+%            Importation des fichiers de configuration             %
+%								   %
+%% -------------------------------------------------------------- %%
+
+%
+% 1 - Fichier d'import des packages
+%
+\input{model/import.tex}
+
+%
+% 2 - Fichier de configuration utilisateur
+%
+\input{model/colors.tex}
+\input{conf/user_conf.tex}
+\input{conf/auto_include.tex}
+
+%
+% 3 - Fichier de définition des styles
+%
+\input{model/code_generation.tex}
+\input{model/format.tex}
+\input{model/tikzConf.tex}
+\input{model/boxes.tex}
+\input{model/tableOfContents.tex}
+\input{model/figures.tex}
+\input{model/items.tex}
+\input{model/miscellaneous.tex}
+\input{model/sections_display.tex}
+\input{model/sections.tex}
+\input{model/section.tex}
+\input{model/maths.tex}
+\input{model/code.tex}
+\input{model/fonts.tex}
+%
+% 4 - Importation des fichiers de bibliographie
+%
+
+
+%\input{bib/all_bibs.bib}
+
+%% -------------------------------------------------------------- %%
+%								   %
+%            	         Corps du document			   %
+%								   %
+%% -------------------------------------------------------------- %%
+
+%
+% 1 - Début du document
+%
+\begin{document}
+
+%
+% 2 - Page titre
+%
+\input{text/Pages_titre/\titlePage}
+
+
+
+
+%\cleardoublepage
+%
+% 3 - Ajout table des matières et liste des figures ; tables
+%
+
+\setcounter{page}{1}
+%\renewcommand*{\thepage}{\Roman{page}}
+
+\includeTOC{beginning}
+\includeLOF{beginning}
+%\includeLOT{beginning}
+
+\newcommand{\sectionbreak}{\clearpage}
+
+%
+% 4 - Résumé
+%
+\includeResume{beginning}
+%\includeResume{}
+
+\input{text/Pages_gnl/annexe.tex}
+\input{text/Pages_gnl/remerciements.tex}
+
+%
+% 5 - Introduction
+%
+\includeIntroduction{}
+
+\section{Motivation}
+{\itshape Prenons l'exemple d'un véhicule autonome qui roule automatiquement sur certains trajectoires planifier dans un certain zone, par la suite  supposons et vérifions si c'est le véhicule automatique occupe la bonne ensemble (le même trajectoire).\\
+Ensuite modélisant ce problème d’une manière mathématique tout en regardant les systèmes qui sont linéaires(quand on fait des méthodes numériques, cela veut dire on cherche souvent à linéariser).} 
+\input{text/Structure/code}
+
+\section{Pr\'esentation du sujet}
+
+\input{text/diffPart/amb4}
+\input{text/diffPart/amb2}
+\input{text/diffPart/amb3}
+\input{text/diffPart/amb1}
+
+\section{Liste de progiciels int\'egr\'es}
+
+\input{text/ombPort/theorie}
+\input{text/ombPort/pratique}
+
+\section{Implémentation et discussion}
+\input{text/implementation/exmpl1}
+
+
+
+
+
+
+
+
+
+\clearpage
+\setcounter{section}{0}
+\input{text/Pages_gnl/conclusion.tex}
+
+%----> Bibliographie
+\newpage
+
+\setcounter{page}{1}
+\renewcommand*{\thepage}{A~\arabic{page}}
+\addcontentsline{toc}{section}{Références}
+%\addbibresource{bib/all_bibs/biblio}
+%\printbibliography
+%\bibliographystyle{unsrt}
+%\bibliography{bib/all_bibs}
+%\nocite{*}
+\bibliography{bib/all_bibs} 
+\bibliographystyle{unsrt}
+
+
+%
+% 3 - Ajout table des matières et liste des figures ; tables
+%     Utilisation des préférence utilisateurs :
+%          * \whereTOC -> end
+%          * \whereLOF -> end
+%          * \whereLOT -> end
+%          * \TOCLOFTNumStyle -> via le fichier de conf xxx
+%     Un réglage manuel comlémentaire est possible sur les \vfill - \newpage
+%
+
+%\setcounter{page}{1}
+%\renewcommand*{\thepage}{\Roman{page}}
+
+\makeatletter
+\ifnum\pdf@strcmp{\whereTOC}{end}=0
+\clearpage
+\else\ifnum\pdf@strcmp{\whereLOT}{end}=0
+\clearpage
+\else\ifnum\pdf@strcmp{\whereLOF}{end}=0
+\clearpage
+\fi\fi\fi
+
+\renewcommand{\sectionbreak}{}
+\includeTOC{end}
+\includeLOF{end}
+%\includeLOT{end}
+\input{text/Pages_gnl/resume.tex}
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+
+
+
+
+
+
+
